@@ -401,6 +401,28 @@ DECLARE_FUNC(yespower){
     SET_BUFFER_RETURN(output, 32);
 }
 
+DECLARE_FUNC(yespower_LITB){
+    DECLARE_SCOPE;
+
+    if (args.Length() < 1)
+        RETURN_EXCEPT("You must provide one argument.");
+
+    Local<Object> target = args[0]->ToObject();
+
+    if(!Buffer::HasInstance(target))
+        RETURN_EXCEPT("Argument should be a buffer object.");
+
+
+    char * input = Buffer::Data(target);
+    char output[32];
+
+
+    yespower_LITB_hash(input, output);
+
+    SET_BUFFER_RETURN(output, 32);
+}
+
+
 DECLARE_FUNC(yespower_0_5_R8){
     DECLARE_SCOPE;
 
@@ -600,6 +622,7 @@ DECLARE_INIT(init) {
     NODE_SET_METHOD(exports, "x13", x13);
     NODE_SET_METHOD(exports, "x15", x15);
     NODE_SET_METHOD(exports, "yespower", yespower);
+    NODE_SET_METHOD(exports, "yespower_LITB", yespower_LITB);
     NODE_SET_METHOD(exports, "yespower_0_5_R8", yespower_0_5_R8);
     NODE_SET_METHOD(exports, "yespower_0_5_R8G", yespower_0_5_R8G);
     NODE_SET_METHOD(exports, "yespower_0_5_R16", yespower_0_5_R16);
