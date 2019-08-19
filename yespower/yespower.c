@@ -42,7 +42,7 @@ void yespower_hash(const char *input, char *output)
 }
 
 // for yespower_0_5_LITB (lightbit)
-void yespower_0_5_LITB_hash(const char *input, char *output)
+void yespower_LITB_hash(const char *input, char *output)
 {
         yespower_params_t params = {
                 .version = YESPOWER_1_0,
