@@ -41,6 +41,20 @@ void yespower_hash(const char *input, char *output)
         yespower_tls((const uint8_t *) input, 80, &params, (yespower_binary_t *) output);
 }
 
+// for yespower_0_5_LITB (lightbit)
+void yespower_0_5_LITB_hash(const char *input, char *output)
+{
+        yespower_params_t params = {
+                .version = YESPOWER_1_0,
+                .N = 2048,
+                .r = 32,
+                .pers = "LITBpower: The number of LITB working or available for proof-of-work mining",
+                .perslen = 73
+        };
+        yespower_tls((const uint8_t *) input, 80, &params, (yespower_binary_t *) output);
+}
+
+
 // for yescryptR8, yespower-0.5_R8 (BitZeny, BitZeny-Plus)
 void yespower_0_5_R8_hash(const char *input, char *output)
 {
